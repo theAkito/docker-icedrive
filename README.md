@@ -1,34 +1,44 @@
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/akito13/alpine?style=plastic)
-![Docker Image Version (latest semver)](https://img.shields.io/docker/v/akito13/alpine?style=plastic)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/akito13/icedrive?style=plastic)
+![Docker Image Version (latest semver)](https://img.shields.io/docker/v/akito13/icedrive?style=plastic)
 
-![Docker Stars](https://img.shields.io/docker/stars/akito13/alpine?style=plastic)
-![Docker Pulls](https://img.shields.io/docker/pulls/akito13/alpine?style=plastic)
+![Docker Stars](https://img.shields.io/docker/stars/akito13/icedrive?style=plastic)
+![Docker Pulls](https://img.shields.io/docker/pulls/akito13/icedrive?style=plastic)
 
-![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/akito13/alpine?style=plastic)
-![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/akito13/alpine?style=plastic)
+![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/akito13/icedrive?style=plastic)
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/akito13/icedrive?style=plastic)
 
-[![Upstream](https://img.shields.io/badge/upstream-project-yellow?style=plastic)](https://github.com/borgbackup/borg)
+[![Upstream](https://img.shields.io/badge/upstream-project-yellow?style=plastic)](https://github.com/rclone/rclone)
 
-![GitHub](https://img.shields.io/github/license/theAkito/docker-alpine?style=plastic)
+![GitHub](https://img.shields.io/github/license/theAkito/docker-icedrive?style=plastic)
 ![Liberapay patrons](https://img.shields.io/liberapay/patrons/Akito?style=plastic)
 
 ## What
-This is a template, which further Docker projects should be initially generated from.
+Minimal [Icedrive](https://icedrive.net) access over [WebDAV](https://en.wikipedia.org/wiki/WebDAV) with [RClone](https://rclone.org).
 
 ## Why
-Makes life easier and saves a lot of boilerplating time.
+Icedrive is quite unknown, which means it lacks community support. Therefore, this provider lacks a wide variety of ready to use client solutions.
+This repository provides one of those solutions.
 
 ## How
-Generate the Docker project from this template, for example by choosing the template during the repository creation in the Git server's Web UI.
+1. Clone this repository and change to its directory.
+2. Adjust the volume locations in the  `docker-compose.yaml` file.
+3. Save your password encrypted and encoded for RClone to use:
+```bash
+bash prep-pw.sh "<your-password-here>"
+```
+4. Run the daemon:
+```bash
+docker-compose up -d
+```
 
 ## Get
 Latest build:
 ```bash
-docker pull akito13/alpine
+docker pull akito13/icedrive
 ```
 Fixed version:
 ```bash
-docker pull akito13/alpine:0.4.0
+docker pull akito13/icedrive:0.4.0
 ```
 Tags follow semver, without the `v`.
 Git tags equal Docker tags, so no need to check tags explicitly on Docker Hub.
@@ -40,7 +50,7 @@ bash docker-build.sh
 ```
 
 ## License
-Copyright (C) 2020  Akito <the@akito.ooo>
+Copyright (C) 2021  Akito <the@akito.ooo>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

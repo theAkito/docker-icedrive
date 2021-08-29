@@ -1,3 +1,4 @@
+#!/bin/bash
 #########################################################################
 # Copyright (C) 2021 Akito <the@akito.ooo>                              #
 #                                                                       #
@@ -15,28 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>. #
 #########################################################################
 
-FROM rclone/rclone
 
-ARG TAG="v1.3.9"
-ARG BRANCH="master"
-ARG BUILD_VERSION
-ARG BUILD_REVISION
-ARG BUILD_DATE
+password="$1"
 
-LABEL maintainer="Akito <the@akito.ooo>"
-LABEL org.opencontainers.image.authors="Akito <the@akito.ooo>"
-LABEL org.opencontainers.image.vendor="Akito"
-LABEL org.opencontainers.image.version="${BUILD_VERSION}"
-LABEL org.opencontainers.image.revision="${BUILD_REVISION}"
-LABEL org.opencontainers.image.created="${BUILD_DATE}"
-LABEL org.opencontainers.image.title="Icedrive"
-LABEL org.opencontainers.image.description="Using Icedrive WebDAV access with RClone."
-LABEL org.opencontainers.image.source="https://github.com/theAkito/docker-icedrive"
-LABEL org.opencontainers.image.licenses="GPL-3.0+"
-
-COPY docker/entrypoint.sh /config/rclone
-
-WORKDIR /data
-
-ENTRYPOINT [ "/bin/sh" ]
-CMD [ "/config/rclone/entrypoint.sh" ]
+docker run --rm -itd --volume="$(pwd)/:/mount" --entrypoint "/bin/sh" rclone/rclone -c "/usr/local/bin/rclone obscure ${password} > /mount/config/pw.txt"

@@ -15,28 +15,29 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>. #
 #########################################################################
 
-FROM rclone/rclone
+version: '3.3'
 
-ARG TAG="v1.3.9"
-ARG BRANCH="master"
-ARG BUILD_VERSION
-ARG BUILD_REVISION
-ARG BUILD_DATE
-
-LABEL maintainer="Akito <the@akito.ooo>"
-LABEL org.opencontainers.image.authors="Akito <the@akito.ooo>"
-LABEL org.opencontainers.image.vendor="Akito"
-LABEL org.opencontainers.image.version="${BUILD_VERSION}"
-LABEL org.opencontainers.image.revision="${BUILD_REVISION}"
-LABEL org.opencontainers.image.created="${BUILD_DATE}"
-LABEL org.opencontainers.image.title="Icedrive"
-LABEL org.opencontainers.image.description="Using Icedrive WebDAV access with RClone."
-LABEL org.opencontainers.image.source="https://github.com/theAkito/docker-icedrive"
-LABEL org.opencontainers.image.licenses="GPL-3.0+"
-
-COPY docker/entrypoint.sh /config/rclone
-
-WORKDIR /data
-
-ENTRYPOINT [ "/bin/sh" ]
-CMD [ "/config/rclone/entrypoint.sh" ]
+services:
+  rclone:
+    image: rclone/rclone
+    container_name: rclone
+    user: 755:754 # Must be the same as the uid:gid of the actual OS user outside of Docker.
+    entrypoint: ["/bin/sh", "-c", "/data/entrypoint.sh"]
+    devices:
+      # By default, the container will be able to read, write, and mknod these devices.
+      # This can be overridden using a third :rwm set of options to each --device flag.
+      - '/dev/fuse:/dev/fuse:rwm'
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - 'apparmor:unconfined'
+    environment:
+      - 'RCLONE_WEBDAV_USER=<your-icedrive-login>'
+      # Do not provide a password here, but use `prep-pw.sh` as described in the instructions.
+    volumes:
+      # Change mountpoint (left part) to your needs.
+      - '/home/rclone/data:/data:shared'
+      - '/home/rclone/config:/config/rclone'
+      # Do not modify the following.
+      - '/etc/passwd:/etc/passwd:ro'
+      - '/etc/group:/etc/group:ro'
