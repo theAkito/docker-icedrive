@@ -32,7 +32,7 @@ LABEL org.opencontainers.image.created="${BUILD_DATE}"
 LABEL org.opencontainers.image.title="Icedrive"
 LABEL org.opencontainers.image.description="Using Icedrive WebDAV access with RClone."
 LABEL org.opencontainers.image.url="https://hub.docker.com/r/akito13/icedrive"
-LABEL org.opencontainers.image.documentation="https://doc.akito.ooo/books/home/page/setting-up-webdav-access-with-rclone"
+LABEL org.opencontainers.image.documentation="https://doc.akito.ooo/books/home/page/setting-up-webdav-access-to-icedrive-with-rclone"
 LABEL org.opencontainers.image.source="https://github.com/theAkito/docker-icedrive"
 LABEL org.opencontainers.image.licenses="GPL-3.0+"
 

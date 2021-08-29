@@ -25,3 +25,4 @@ mkdir -p /home/rclone/data/mount
 mkdir -p /home/rclone/data/cache
 mkdir /home/rclone/config
 chown -R rclone:rclone /home/rclone
+chmod -R 777 /home/rclone/data
