@@ -1,11 +1,9 @@
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/akito13/icedrive?style=plastic)
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/akito13/icedrive?style=plastic)
 
 ![Docker Stars](https://img.shields.io/docker/stars/akito13/icedrive?style=plastic)
 ![Docker Pulls](https://img.shields.io/docker/pulls/akito13/icedrive?style=plastic)
 
 ![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/akito13/icedrive?style=plastic)
-![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/akito13/icedrive?style=plastic)
 
 [![Upstream](https://img.shields.io/badge/upstream-project-yellow?style=plastic)](https://github.com/rclone/rclone)
 
@@ -21,7 +19,7 @@ This repository provides one of those solutions.
 
 ## How
 1. Clone this repository and change to its directory.
-2. Adjust the volume locations in the  `docker-compose.yaml` file.
+2. Adjust the volume locations (optional) and provide your login username for your Icedrive account in the  `docker-compose.yaml` file.
 3. Save your password encrypted and encoded for RClone to use:
 ```bash
 bash prep-pw.sh "<your-password-here>"
