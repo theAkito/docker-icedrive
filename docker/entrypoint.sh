@@ -35,13 +35,14 @@ cmd=(
       # This mode should support all normal file system operations and is otherwise identical to --vfs-cache-mode writes.
       # When reading a file rclone will read --buffer-size plus --vfs-read-ahead bytes ahead.
     --vfs-cache-max-size 20G
+      # Max total size of objects in the cache. (default off)
+    --buffer-size 16M
+      #   VFS File Buffering
       # The --buffer-size is buffered in memory whereas the --vfs-read-ahead is buffered on disk.
       # When using this mode it is recommended that --buffer-size is not set too big and --vfs-read-ahead is set large if required.
       # IMPORTANT not all file systems support sparse files. In particular FAT/exFAT do not.
       # Rclone will perform very badly if the cache directory is on a filesystem which doesn't support sparse files and it will log an ERROR message if one is detected.
-    --buffer-size 16M
-      # Max total size of objects in the cache. (default off)
-      #   VFS File Buffering
+      #
       # The --buffer-size flag determines the amount of memory, that will be used to buffer data in advance.
       # Each open file will try to keep the specified amount of data in memory at all times.
       # The buffered data is bound to one open file and won't be shared.
